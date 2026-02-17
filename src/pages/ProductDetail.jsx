@@ -2,6 +2,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
+import ProductCard from '../components/ProductCard';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -9,6 +10,7 @@ const ProductDetail = () => {
   const { addToCart } = useCart();
   
   const product = products.find(p => p.id === parseInt(id));
+  const relatedProducts = products.filter(p => p.category === product?.category && p.id !== product?.id).slice(0, 4);
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedColor, setSelectedColor] = useState(null);
@@ -34,13 +36,13 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-light pt-20 md:pt-24 pb-8">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-light pt-[88px] pb-8 lg:pt-4">
+      <div className="container mx-auto px-3 md:px-4">
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6 lg:p-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 p-3 md:p-6 lg:p-10">
             {/* Image Gallery */}
-            <div className="sticky top-24">
-              <div className="relative overflow-hidden rounded-xl bg-gray-100 mb-4">
+            <div className="lg:sticky lg:top-24">
+              <div className="relative overflow-hidden rounded-xl bg-gray-100 mb-3 md:mb-4">
                 <img 
                   src={product.images[selectedImage] || product.image} 
                   alt={product.name}
@@ -54,7 +56,7 @@ const ProductDetail = () => {
               </div>
               
               {product.images.length > 1 && (
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-4 gap-2 mb-4 md:mb-0">
                   {product.images.map((img, idx) => (
                     <button
                       key={idx}
@@ -72,7 +74,7 @@ const ProductDetail = () => {
 
             {/* Product Info */}
             <div>
-              <h1 className="text-2xl lg:text-3xl font-bold mb-4">{product.name}</h1>
+              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4">{product.name}</h1>
               
               <div className="flex items-center gap-4 mb-6">
                 <span className="text-gray-400 text-xl line-through">Rs. {product.price}</span>
@@ -167,6 +169,18 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
+
+        {/* Related Products */}
+        {relatedProducts.length > 0 && (
+          <div className="mt-8 md:mt-12">
+            <h2 className="text-xl md:text-2xl font-bold text-center mb-6">Related Products</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+              {relatedProducts.map((product, idx) => (
+                <ProductCard key={product.id} product={product} index={idx} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

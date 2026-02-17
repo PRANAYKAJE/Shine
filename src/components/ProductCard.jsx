@@ -63,9 +63,9 @@ const ProductCard = ({ product, index = 0 }) => {
         </button>
       </div>
       
-      <div className="p-2 md:p-3">
+      <div className="p-2 md:p-3 relative">
         <Link to={`/product/${product.id}`}>
-          <h3 className="text-xs md:text-sm font-medium mb-1 line-clamp-2 hover:text-pink-600 transition-colors leading-tight">
+          <h3 className="text-xs md:text-sm font-medium mb-1 line-clamp-2 hover:text-pink-600 transition-colors leading-tight min-h-[32px] md:min-h-auto">
             {product.name}
           </h3>
         </Link>

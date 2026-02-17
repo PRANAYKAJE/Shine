@@ -21,8 +21,8 @@ const Home = () => {
       <section className="hero mb-4 md:mb-8 overflow-hidden">
         <Link to="/products">
           <img 
-            src="https://jewelsmars.com/cdn/shop/files/valentines_day_banner.png?v=1770135680" 
-            alt="Valentine's Day Sale" 
+            src="https://jewelsmars.com/cdn/shop/files/holi_sale_banner.png" 
+            alt="Holi Sale" 
             className="w-full max-w-[1400px] mx-auto h-auto object-contain"
           />
         </Link>

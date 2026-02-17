@@ -341,6 +341,18 @@ ul {
     position: relative;
 }
 
+.hero img {
+    max-height: 50vh;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .hero img {
+        max-height: 35vh;
+        object-fit: contain;
+    }
+}
+
 .hero-banner {
     width: 100%;
     height: auto;
