@@ -1,10 +1,11 @@
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useState, useMemo } from 'react';
 import { products, categories } from '../data/products';
 import ProductCard from '../components/ProductCard';
 
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const categoryParam = searchParams.get('category');
   
   const [selectedCategory, setSelectedCategory] = useState(categoryParam || '');
@@ -74,11 +75,40 @@ const Products = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20 md:pt-24">
+    <div className="min-h-screen bg-gray-50 pt-12 md:pt-14">
+      {/* Back Button - Show when category is selected */}
+      {selectedCategory && (
+        <div className="bg-white px-4 py-3 border-b">
+          <button 
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            <i className="fas fa-arrow-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      )}
       {/* Page Header */}
-      <div className="bg-white shadow-sm py-4 px-4">
-        <h1 className="text-xl font-bold text-gray-900">{categoryTitle}</h1>
-        <p className="text-sm text-gray-500 mt-1">{filteredProducts.length} products</p>
+      <div className="bg-white shadow-sm py-4 px-4 flex items-center justify-between">
+        <div>
+          <h1 className="text-xl font-bold text-gray-900">{categoryTitle}</h1>
+          <p className="text-sm text-gray-500 mt-1">{filteredProducts.length} products</p>
+        </div>
+        <div className="hidden lg:flex items-center gap-2">
+          <span className="text-sm text-gray-500">Sort:</span>
+          <select 
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none"
+          >
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="newest">New Arrivals</option>
+            <option value="a-z">A to Z</option>
+            <option value="z-a">Z to A</option>
+          </select>
+        </div>
       </div>
 
       {/* Mobile Filter & Sort Bar */}

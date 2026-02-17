@@ -17,7 +17,7 @@ const ProductDetail = () => {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center pt-20 md:pt-24">
+      <div className="min-h-screen flex items-center justify-center pt-12 md:pt-14">
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-4">Product Not Found</h2>
           <Link to="/products" className="btn">Continue Shopping</Link>
@@ -36,8 +36,18 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-light pt-[88px] pb-8 lg:pt-4">
+    <div className="min-h-screen bg-light pt-12 md:pt-14 pb-8">
       <div className="container mx-auto px-3 md:px-4">
+        {/* Back Button */}
+        <div className="mb-4">
+          <button 
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            <i className="fas fa-arrow-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 p-3 md:p-6 lg:p-10">
             {/* Image Gallery */}
