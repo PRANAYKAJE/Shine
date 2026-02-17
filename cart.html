@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Jewelsmars</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .cart-section {
+            padding: 50px 0;
+            background: var(--light-gray);
+            min-height: 60vh;
+        }
+        
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .cart-items {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .cart-item:first-child {
+            padding-top: 0;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .cart-item-details h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .cart-item-details h3 a {
+            transition: color 0.3s;
+        }
+        
+        .cart-item-details h3 a:hover {
+            color: var(--accent-color);
+        }
+        
+        .cart-item-price {
+            font-size: 16px;
+            color: var(--sale-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cart-item-quantity button {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--border-color);
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .cart-item-quantity button:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .cart-item-quantity span {
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .cart-item-remove {
+            text-align: right;
+        }
+        
+        .cart-item-remove button {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        
+        .cart-item-remove button:hover {
+            color: var(--sale-color);
+        }
+        
+        .cart-summary {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+        
+        .cart-summary h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .summary-row.total {
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background: #333;
+        }
+        
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .continue-shopping:hover {
+            color: var(--accent-color);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-cart i {
+            font-size: 60px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .empty-cart h2 {
+            margin-bottom: 10px;
+        }
+        
+        .empty-cart p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-summary {
+                position: static;
+            }
+            
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+            }
+            
+            .cart-item-remove {
+                grid-column: 2;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="announcement-bar">
+        <p>VALENTINE'S DAY SALE IS LIVE UPTO 70% &nbsp;|&nbsp; FREE SHIPPING ABOVE INR 599 &nbsp;|&nbsp; FREE GIFT ON ORDER ABOVE INR 699 &nbsp;|&nbsp; COD AVAILABLE &nbsp;|&nbsp; EASY RETURN</p>
+    </div>
+
+    <header class="header">
+        <div class="header-main">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://jewelsmars.com/cdn/shop/files/Jewelsmars_Logo_1.png?v=1745510152&width=330" alt="Jewelsmars">
+                </a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search Our Site">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-icons">
+                <a href="#" class="icon-link"><i class="fas fa-user"></i></a>
+                <a href="#" class="icon-link"><i class="fas fa-heart"></i></a>
+                <a href="cart.html" class="icon-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item has-dropdown">
+                    <a href="#">Categories</a>
+                    <ul class="dropdown">
+                        <li><a href="products.html?category=earrings">Earrings</a></li>
+                        <li><a href="products.html?category=necklace">Necklace</a></li>
+                        <li><a href="products.html?category=rings">Rings</a></li>
+                        <li><a href="products.html?category=bracelets">Bracelets</a></li>
+                        <li><a href="products.html?category=hair-accessories">Hair Accessories</a></li>
+                    </ul>
+                </li>
+                <li><a href="products.html?category=hand-jewellery">Hand Jewellery</a></li>
+                <li><a href="#">Hot Deals</a></li>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="cart-section">
+        <div class="container">
+            <h1 class="page-title" style="margin-bottom: 30px; font-size: 28px;">Shopping Cart</h1>
+            
+            <div class="cart-layout" id="cart-layout">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>About Us</h3>
+                    <p>Jewelsmars is the best seller of Korean jewellery in India.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@jewelsmars.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Jewelsmars. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

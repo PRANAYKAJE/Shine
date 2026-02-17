@@ -1,0 +1,25 @@
+# --- OS-specific files ---
+.DS_Store
+Thumbs.db
+
+# --- Build/Output directories ---
+/dist/
+/build/
+/out/
+/bin/
+
+# --- Dependency directories ---
+node_modules/
+/venv/
+/env/
+__pycache__/
+*.py[cod]
+
+# --- Logs and temporary files ---
+*.log
+*.tmp
+.cache/
+
+# --- Sensitive files (Secrets) ---
+.env
+*.pem
