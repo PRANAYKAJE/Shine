@@ -4,7 +4,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gray-50 py-6 md:py-10">
+    <div className="min-h-screen bg-gray-50 pt-20 md:pt-24 pb-10">
       <div className="container mx-auto px-2 md:px-4">
         {/* Header with back button */}
         <div className="flex items-center mb-6">

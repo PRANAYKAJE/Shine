@@ -74,7 +74,7 @@ const Products = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pt-20 md:pt-24">
       {/* Page Header */}
       <div className="bg-white shadow-sm py-4 px-4">
         <h1 className="text-xl font-bold text-gray-900">{categoryTitle}</h1>

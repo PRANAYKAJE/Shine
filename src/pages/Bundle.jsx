@@ -35,7 +35,7 @@ const Bundle = () => {
   const savings = originalPrice - BUNDLE_PRICE;
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24 md:pb-28">
+    <div className="min-h-screen bg-gray-50 pt-20 md:pt-24 pb-24 md:pb-28">
       {/* Hero Banner */}
       <div className="bg-gradient-to-r from-pink-500 to-orange-400 text-white py-6 md:py-10">
         <div className="container mx-auto px-4 text-center">

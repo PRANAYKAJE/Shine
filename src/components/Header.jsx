@@ -169,10 +169,10 @@ const Header = () => {
 
           {/* Icons */}
           <div className="flex items-center gap-3 md:gap-5">
-            <Link to="/profile" className="hidden md:block text-lg hover:text-pink-600 transition-colors">
+            <Link to="/profile" className="relative text-lg hover:text-pink-600 transition-colors">
               <i className="fas fa-user"></i>
             </Link>
-            <Link to="/wishlist" className="relative hidden md:block text-lg hover:text-pink-600 transition-colors">
+            <Link to="/wishlist" className="relative text-lg hover:text-pink-600 transition-colors">
               <i className="fas fa-heart"></i>
               {wishlistCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
