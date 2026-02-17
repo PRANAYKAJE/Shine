@@ -35,7 +35,18 @@ const Bundle = () => {
   const savings = originalPrice - BUNDLE_PRICE;
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20 md:pt-24 pb-24 md:pb-28">
+    <div className="min-h-screen bg-gray-50 pt-12 md:pt-14 pb-24 md:pb-28">
+      {/* Back Button */}
+      <div className="bg-white px-4 py-3 border-b">
+        <button 
+          onClick={() => navigate('/')}
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+        >
+          <i className="fas fa-arrow-left"></i>
+          <span>Back</span>
+        </button>
+      </div>
+
       {/* Hero Banner */}
       <div className="bg-gradient-to-r from-pink-500 to-orange-400 text-white py-6 md:py-10">
         <div className="container mx-auto px-4 text-center">
